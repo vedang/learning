@@ -256,6 +256,7 @@
                                  new)
      :else (conj ((insertL-f test?) new old (rest l)) (first l)))))
 
+
 (defn insertR-f
   "Return a function to do insertR"
   [test?]
@@ -267,23 +268,30 @@
                                  old)
      :else (conj ((insertR-f test?) new old (rest l)) (first l)))))
 
+
 (defn seqL
   "cons new to left of old"
   [new old l]
   (conj (conj l old) new))
+
 
 (defn seqR
   "cons new to the right of old"
   [new old l]
   (conj (conj l new) old))
 
+
 (defn seqS
+  "subst"
   [new old l]
   (conj l new))
 
+
 (defn seqrem
+  "remove"
   [new old l]
   l)
+
 
 (defn insert-g
   "return insertL or insertR"
@@ -294,15 +302,18 @@
      (= old (first l)) (seq new old (rest l))
      :else (conj ((insert-g seq) new old (rest l)) (first l)))))
 
+
 (def insertL (insert-g seqL))
 (def insertR (insert-g seqR))
 (def subst (insert-g seqS))
 (def rember (fn [a l]
               ((insert-g seqrem) false a l)))
 
+
 (defn a-friend
   [x y]
   (empty? y))
+
 
 (defn last-friend
   [x y]
