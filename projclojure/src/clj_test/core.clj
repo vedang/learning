@@ -1,7 +1,7 @@
-(ns
-    ^{:doc "Code from The Little Schemer. This book is a classic and should be read by everyone"
-      :author "Vedang Manerikar <vedang@infinitelybeta.com>"}
-  clj-test.core)
+(ns clj-test.core)
+;; ^{:doc "Code from The Little Schemer. This book is a classic and should be read by everyone"
+;;   :author "Vedang Manerikar <vedang@infinitelybeta.com>"}
+
 ;;The little Schemer
 
 (defn atom? [x]
@@ -25,7 +25,9 @@
    (not (lat? lat)) false
    :else (recur-member? a lat)))
 
-(defn rember [a lat]
+(defn rember
+  "remove the first occurrence of a from lat"
+  [a lat]
   (cond
    (empty? lat) ()
    :else (cond
@@ -212,6 +214,7 @@
                (first set1))))
 
 (defn rember-f
+  "uses the test function to test for a in l and remove the first occurrence"
   [test? a l]
   (cond
    (empty? l) ()
