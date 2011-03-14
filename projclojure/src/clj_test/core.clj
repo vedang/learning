@@ -222,6 +222,29 @@
    :else (conj (rember-f test? a (rest l))
                (first l))))
 
+
+(defn eq?-c
+  [a]
+  (fn [x]
+     (= x a)))
+
+
+(defn eq?-salad
+  []
+  (eq?-c 'salad))
+
+
+(defn rember-f
+  "takes a test function and returns a function to do rember"
+  [test?]
+  (fn [a l]
+    (cond
+     (empty? l) ()
+     (test? (first l) a) (rest l)
+     :else (conj ((rember-f test?) a (rest l))
+                 (first l)))))
+
+
 (defn insertL-f
   "Return a function to do insertL"
   [test?]
