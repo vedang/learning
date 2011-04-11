@@ -71,14 +71,25 @@
           (or (= o1 (first lat)) (= o2 (first lat))) (conj (rest lat) new)
           :else (conj (subst2 new o1 o2 (rest lat)) (first lat)))))
 
+
 (defn multirember
   "Remove all occurrences of a from lat"
   [a lat]
   (cond
    (empty? lat) ()
-   :else (cond
-          (= a (first lat)) (recur a (rest lat))
-          :else (conj (multirember a (rest lat)) (first lat)))))
+   (= a (first lat)) (recur a (rest lat))
+   :else (conj (multirember a (rest lat)) (first lat))))
+
+
+(defn multirember-f
+  "remove all occurences of a from lat which return true for test?"
+  [test?]
+  (fn [a lat]
+    (cond
+     (empty? lat) ()
+     (test? a (first lat)) ((multirember-f test?) a (rest lat))
+     :else (conj ((multirember-f test?) a (rest lat))
+                 (first lat)))))
 
 (defn multiinsertR
   "Insert new to right of all occurrences of old in lat"
