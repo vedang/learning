@@ -8,7 +8,7 @@
   "Is the guess good-enough?"
   [guess x]
   (< (Math/abs (- (* guess guess)
-		  x))
+                  x))
      0.001))
 
 
@@ -16,7 +16,7 @@
   "Improve the guess"
   [guess x]
   (/ (+ guess
-	(/ x guess))
+        (/ x guess))
      2))
 
 
@@ -44,3 +44,18 @@
    (= y 1) 2
    :else (A (- x 1)
             (A x (- y 1)))))
+
+
+;;; Fibonacci using a linear iterative process.
+(defn fib-iter
+  "iteratively calculate the Fibonacci sequence"
+  [a b n]
+  (cond
+    (= n 0) a
+    :else (fib-iter b (+ a b) (- n 1))))
+
+
+(defn fib
+  "generate the nth Fibonacci number"
+  [n]
+  (fib-iter 0 1 n))
