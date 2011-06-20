@@ -4,4 +4,4 @@
                  [org.clojure/clojure-contrib "1.2.0"]
                  [org.clojure/data.finger-tree "0.0.1"]
                  [ring "0.3.7"]]
-  :dev-dependencies [[swank-clojure "1.2.1"]])
+  :dev-dependencies [[swank-clojure "1.3.1"]])
