@@ -90,3 +90,32 @@
 of change"
   [amount]
   (cc amount 5))
+
+
+;;; Exercise 1.11:
+;;; f(n) = n if n < 3
+;;; f(n) = f(n - 1) + 2f(n - 2) + 3f(n - 3) if n >= 3
+
+(defn prob-1-11-recur
+  "linear recursive process to solve Ex. 1.11"
+  [n]
+  (cond
+    (< n 3) n
+    :else (+ (prob-1-11 (- n 1))
+             (prob-1-11 (- n 2))
+             (prob-1-11 (- n 3)))))
+
+
+(defn prob-1-11
+  [n]
+  (prob-1-11-iter 0 1 2 n))
+
+
+(defn prob-1-11-iter
+  "linear iterative process to solve Ex. 1.11"
+  [a b c n]
+  (cond
+    (= n 2) c
+    (= n 1) b
+    (= n 0) a
+    :else (prob-1-11-iter b c (+ a b c) (- n 1))))
