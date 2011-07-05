@@ -1,18 +1,23 @@
 # Makefile for usaco's C programs
+# fill in the source and executable fields when you want to use the file.
+
 
 OPTIMIZATION?=-O2
 CFLAGS?= -std=c99 -pedantic $(OPTIMIZATION) -Wall
+CC=gcc
+LDFLAGS=
+SOURCES=
+OBJECTS=$(SOURCES:.c=.o)
+EXECUTABLE=
 
-all: ride test
+all: $(SOURCES) $(EXECUTABLE)
 
-test:
-	$(CC) -o test.o $(CFLAGS) test.c
-
-ride:
-	$(CC) -o ride.o $(CFLAGS) ride.c
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 clean:
 	rm -rf *.o
+	rm -rf *.out
 
 check-syntax:
-	gcc -o nul $(CFLAGS) -S ${CHK_SOURCES}
+	$(CC) -o nul $(CFLAGS) -S ${CHK_SOURCES}
