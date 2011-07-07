@@ -3,12 +3,12 @@
 
 
 OPTIMIZATION?=-O2
-CFLAGS?= -std=c99 -pedantic $(OPTIMIZATION) -Wall
+CFLAGS?= -std=gnu99 -pedantic $(OPTIMIZATION) -Wall
 CC=gcc
 LDFLAGS=
-SOURCES=nonblock.c
+SOURCES=signal.c util_funcs.c
 OBJECTS=$(SOURCES:.c=.o)
-EXECUTABLE=nonblock.out
+EXECUTABLE=signal.out
 
 all: $(SOURCES) $(EXECUTABLE)
 
