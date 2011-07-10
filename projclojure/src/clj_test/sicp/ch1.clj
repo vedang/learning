@@ -101,14 +101,9 @@ of change"
   [n]
   (cond
     (< n 3) n
-    :else (+ (prob-1-11 (- n 1))
-             (prob-1-11 (- n 2))
-             (prob-1-11 (- n 3)))))
-
-
-(defn prob-1-11
-  [n]
-  (prob-1-11-iter 0 1 2 n))
+    :else (+ (prob-1-11-recur (- n 1))
+             (prob-1-11-recur (- n 2))
+             (prob-1-11-recur (- n 3)))))
 
 
 (defn prob-1-11-iter
@@ -119,3 +114,8 @@ of change"
     (= n 1) b
     (= n 0) a
     :else (prob-1-11-iter b c (+ a b c) (- n 1))))
+
+
+(defn prob-1-11
+  [n]
+  (prob-1-11-iter 0 1 2 n))
