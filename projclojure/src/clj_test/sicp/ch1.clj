@@ -119,3 +119,39 @@ of change"
 (defn prob-1-11
   [n]
   (prob-1-11-iter 0 1 2 n))
+
+
+;;; Exercise 1.12
+;;; Write a procedure to compute elements of Pascal's Triangle.
+
+(defn pascal-val
+  "function to calculate value of element at a particular row and column
+for the pascal triangle."
+  [r c]
+  (cond
+    (= c 0) 1
+    (= c r) 1
+    :else (+ (pascal-val (- r 1) (- c 1))
+             (pascal-val (- r 1) c)) ))
+
+
+(defn pascal-row
+  "calculate a row of the pascal triangle"
+  [r]
+  (map (fn [x]
+         (pascal-val r x))
+       (range (+ r 1))))
+
+
+(defn pascal-triangle
+  [i h]
+  (println (pascal-row i))
+  (cond
+    (= h 0) nil
+    :else (pascal-triangle (+ i 1) (- h 1))))
+
+
+(defn print-pascal-triangle
+  "print pascal triangle of height h"
+  [h]
+  (pascal-triangle 0 h))
