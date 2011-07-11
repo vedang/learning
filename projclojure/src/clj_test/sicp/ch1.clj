@@ -155,3 +155,16 @@ for the pascal triangle."
   "print pascal triangle of height h"
   [h]
   (pascal-triangle 0 h))
+
+
+;;; A better solution for pascal's triangle by BG
+(defn next-row
+  "Calculate the next row of Pascal's Triangle"
+  [row]
+  (vec (map + (concat [0] row) (concat row [0]))))
+
+
+(defn pascal-triangle
+  "infinite sequence of pascal rows"
+  []
+  (iterate next-row [1]))
