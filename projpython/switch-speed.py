@@ -1,6 +1,17 @@
 from timeit import Timer
 from random import randint
 
+smap = {1: '1',
+        2: '2',
+        3: '3',
+        4: '4',
+        5: '5',
+        6: '6',
+        7: '7',
+        8: '8',
+        9: '9',
+        10: '10'}
+
 
 def switch_if():
     value = randint(1, 10)
@@ -28,16 +39,6 @@ def switch_if():
 
 def switch_map():
     value = randint(1, 10)
-    smap = {1: '1',
-            2: '2',
-            3: '3',
-            4: '4',
-            5: '5',
-            6: '6',
-            7: '7',
-            8: '8',
-            9: '9',
-            10: '10'}
     return smap[value]
 
 
