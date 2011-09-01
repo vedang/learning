@@ -89,4 +89,12 @@
 
 (defn seq-reduce
   "forclosure prob 60"
-  [])
+  ([fun coll]
+     (lazy-seq (seq-reduce fun (first coll) (rest coll))))
+  ([fun val coll]
+     (if (seq coll)
+       (let [newval (fun val (first coll))]
+         (cons val (lazy-seq (seq-reduce fun
+                                         newval
+                                         (rest coll)))))
+       (cons val (lazy-seq ())))))
