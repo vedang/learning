@@ -6,10 +6,9 @@ OPTIMIZATION?=-O2
 CFLAGS?= -std=gnu99 -pedantic $(OPTIMIZATION) -Wall
 CC=gcc
 LDFLAGS=
-SOURCES=epoll.c \
-        util_funcs.c
+SOURCES=strcpy.c
 OBJECTS=$(SOURCES:.c=.o)
-EXECUTABLE=epoll.out
+EXECUTABLE=strcpy.out
 
 all: $(SOURCES) $(EXECUTABLE)
 
