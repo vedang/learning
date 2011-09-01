@@ -1,6 +1,7 @@
 from timeit import Timer
 from random import randint
 
+
 smap = {1: '1',
         2: '2',
         3: '3',
@@ -43,7 +44,7 @@ def switch_map():
 
 
 t = Timer(setup='from __main__ import switch_if', stmt='switch_if()')
-print t.timeit()
+print "if - ", t.timeit()
 
 t = Timer(setup='from __main__ import switch_map', stmt='switch_map()')
-print t.timeit()
+print "map - ", t.timeit()
