@@ -97,4 +97,15 @@
          (cons val (lazy-seq (seq-reduce fun
                                          newval
                                          (rest coll)))))
-       (cons val (lazy-seq ())))))
+       (cons val nil))))
+
+
+(defn pron
+  [coll]
+  (mapcat (juxt count first) (partition-by identity coll)))
+
+
+(defn pronounciation
+  "forclosure prob 110"
+  [coll]
+  (iterate pron (pron coll)))
