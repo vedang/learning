@@ -92,12 +92,10 @@
   ([fun coll]
      (lazy-seq (seq-reduce fun (first coll) (rest coll))))
   ([fun val coll]
-     (if (seq coll)
-       (let [newval (fun val (first coll))]
-         (cons val (lazy-seq (seq-reduce fun
-                                         newval
-                                         (rest coll)))))
-       (cons val nil))))
+     (when-let [s (seq coll)]
+       (cons val (lazy-seq (seq-reduce fun
+                                       (fun val (first s))
+                                       (rest s)))))))
 
 
 (defn pron
@@ -106,6 +104,61 @@
 
 
 (defn pronounciation
-  "forclosure prob 110"
+  "forclojure prob 110"
   [coll]
   (iterate pron (pron coll)))
+
+
+(defn next-step
+  [n]
+  (if (even? n)
+    [(* 2 n) (/ 2 n) (+ 2 n)]
+    [(* 2 n) (+ 2 n)]))
+
+(defn maze
+  "forclojure prob 106"
+  [start end]
+  (let [res (next-step start)]
+    (if (some (partial = end) res)
+      res
+      (map ))))
+
+
+(defn get-camel
+  [a b]
+  (cond
+    (= b nil) nil
+    (= b \-) nil
+    (= a \-) (first (.toUpperCase (.toString b)))
+    :else b))
+
+
+(defn camel-case-words
+  "forclojure prob 102"
+  [s]
+  (apply str (conj (remove nil? (map get-camel
+                                     s
+                                     (concat (rest s) [nil])))
+                   (first s))))
+
+
+(defn rev-interleave
+  "forclojure prob 43"
+  [coll n]
+  (let [seqs (partition n coll)
+        ns (range 0 n)]
+    (for [n ns]
+      (map #(nth % n) seqs))))
+
+
+(defn rotate-seq
+  "forclojure prob 44"
+  [n coll]
+  (let [rot (mod n (count coll))]
+    (concat (drop rot coll) (take rot coll))))
+
+
+(defn mutate
+  "Recognize if a is a single mutation of b.
+Single mutation: add a letter, delete a letter, replace a letter"
+  [])

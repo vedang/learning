@@ -45,7 +45,7 @@
     [x y (rem (f x y) 256)]))
 
 ;;; Define a frame and grab it's graphics context
-(def frame (java.awt.Frame.))
+(def frame (java.awt.Frame. "Title to this"))
 (.setVisible frame true)
 (def gfx (.getGraphics frame))
 

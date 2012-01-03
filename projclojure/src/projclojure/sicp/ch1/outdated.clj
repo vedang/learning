@@ -1,7 +1,7 @@
 ;;; Structure and Interpretation of Computer Science
 ;;; - Abelson, Sussman
 ;;; Chapter 1
-(ns clj-test.sicp.ch1)
+(ns clj-test.sicp.ch1.outdated)
 
 ;;; Square root example from 1.1.7
 (defn good-enough?
